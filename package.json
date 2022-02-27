@@ -1,0 +1,22 @@
+{
+  "name": "teamprofile-generator",
+  "version": "1.0.0",
+  "description": "A Node.js app that builds a team profile page based on employee information that you add",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meshtatsuo/TeamProfile-Generator.git"
+  },
+  "author": "Dominic Misasi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Meshtatsuo/TeamProfile-Generator/issues"
+  },
+  "homepage": "https://github.com/Meshtatsuo/TeamProfile-Generator#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
