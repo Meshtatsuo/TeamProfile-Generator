@@ -3,7 +3,9 @@ const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 
-const employees = [];
+const managers = [];
+const engineers = [];
+const interns = [];
 
 const promptUser = () => {
   inquirer
@@ -81,8 +83,9 @@ const promptUser = () => {
                 employeeData.employeeEmail,
                 employeeData.officeNumber
               );
-              employees.push(newManager);
-              console.log(employees);
+              managers.push(newManager);
+              console.log(managers);
+              promptAddAnother();
             });
           break;
         case "Engineer":
@@ -109,8 +112,9 @@ const promptUser = () => {
                 employeeData.employeeEmail,
                 employeeData.githubLink
               );
-              employees.push(newEngineer);
-              console.log(employees);
+              engineers.push(newEngineer);
+              console.log(engineers);
+              promptAddAnother();
             });
           break;
         case "Intern":
@@ -137,11 +141,37 @@ const promptUser = () => {
                 employeeData.employeeEmail,
                 employeeData.schoolName
               );
-              employees.push(newIntern);
+              interns.push(newIntern);
 
-              console.log(employees);
+              console.log(interns);
+              promptAddAnother();
             });
           break;
+      }
+    });
+};
+
+const promptAddAnother = () => {
+  inquirer
+    .prompt([
+      {
+        type: "confirm",
+        name: "addNewEmployee",
+        message: "Would you like to add another employee?",
+        default: "yes",
+      },
+    ])
+    .then((answers) => {
+      if (answers.addNewEmployee) {
+        promptUser();
+      } else {
+        console.log("~~~~~~~");
+        console.log(managers);
+        console.log("~~~~~~~");
+        console.log(engineers);
+        console.log("~~~~~~~");
+        console.log(interns);
+        console.log("~~~~~~~");
       }
     });
 };
