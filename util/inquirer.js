@@ -2,15 +2,15 @@ const inquirer = require("inquirer");
 const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
+const generator = require("./generatePage");
 
 const managers = [];
 const engineers = [];
 const interns = [];
 
-const promptUser = () => {
+function promptUser() {
   inquirer
-    .prompt([
-      {
+    .prompt([{
         type: "list",
         name: "employeeType",
         message: "What type of employee would you like to add?",
@@ -43,10 +43,10 @@ const promptUser = () => {
           // for using fake emails this works for now.
           if (
             email
-              .toLowerCase()
-              .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-              )
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
           ) {
             return true;
           } else {
@@ -107,8 +107,8 @@ const promptUser = () => {
               employeeData.githubLink = answer.githubLink;
               // create new engineer and add it to employee array
               const newEngineer = new Engineer(
-                employeeData.name,
-                employeeData.id,
+                employeeData.employeeName,
+                employeeData.employeeId,
                 employeeData.employeeEmail,
                 employeeData.githubLink
               );
@@ -153,29 +153,21 @@ const promptUser = () => {
 
 const promptAddAnother = () => {
   inquirer
-    .prompt([
-      {
-        type: "confirm",
-        name: "addNewEmployee",
-        message: "Would you like to add another employee?",
-        default: "yes",
-      },
-    ])
+    .prompt([{
+      type: "confirm",
+      name: "addNewEmployee",
+      message: "Would you like to add another employee?",
+      default: "yes",
+    }, ])
     .then((answers) => {
       if (answers.addNewEmployee) {
         promptUser();
       } else {
-        console.log("~~~~~~~");
-        console.log(managers);
-        console.log("~~~~~~~");
-        console.log(engineers);
-        console.log("~~~~~~~");
-        console.log(interns);
-        console.log("~~~~~~~");
+        let content = generator.generatePage(managers, engineers, interns);
+
+        generator.writeToFile(content);
       }
     });
 };
 
-module.exports = {
-  promptUser: promptUser(),
-};
+exports.promptUser = promptUser;
