@@ -180,10 +180,18 @@ const promptAddAnother = () => {
         // if yes, start prompts again
         promptUser();
       } else {
+        console.log("__________________________");
+        console.log("");
+        console.log("HTML content generating...");
         // if no, generate page content and write it to index.html file
         let content = generator.generatePage(managers, engineers, interns);
 
+        console.log("HTML content generated! Writing to file...");
+        console.log("__________________________");
+
         generator.writeToFile(content);
+        console.log("");
+        console.log("Complete! You can find your profile.html file in the 'dist' folder!")
       }
     });
 };
