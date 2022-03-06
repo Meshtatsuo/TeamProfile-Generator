@@ -31,4 +31,10 @@ describe('Properly creates Manager object that inherits from Employee class', ()
         expect(manager.getOfficeNumber()).toEqual(expect.any(Number));
         expect(manager.getOfficeNumber()).toBe(23);
     })
+
+    it("returns the manager's role", () => {
+        const manager = new Manager("Bob", 5, "test@email.com", 23);
+
+        expect(manager.getRole()).toEqual("Manager");
+    })
 })

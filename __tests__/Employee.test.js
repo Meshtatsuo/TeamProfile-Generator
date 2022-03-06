@@ -36,4 +36,10 @@ describe('valid creation of Employee object', () => {
         expect(employee.getEmail()).toMatch(regexEmail);
 
     })
+
+    it("returns the employee's role", () => {
+        const employee = new Employee("Bob", 5, "test@email.com");
+
+        expect(employee.getRole()).toEqual("Employee");
+    })
 })

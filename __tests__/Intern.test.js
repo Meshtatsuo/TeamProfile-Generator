@@ -31,4 +31,10 @@ describe('Properly creates Intern object that inherits from Employee class', () 
         expect(intern.getSchool()).toEqual(expect.any(String));
         expect(intern.getSchool()).toBe("University of Minnesota");
     })
+
+    it("returns the intern's role", () => {
+        const intern = new Intern("Bob", 5, "test@email.com", "University of Minnesota");
+
+        expect(intern.getRole()).toEqual("Intern");
+    })
 })

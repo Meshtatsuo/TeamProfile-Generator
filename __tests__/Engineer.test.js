@@ -28,7 +28,13 @@ describe('Properly creates Engineer object that inherits from Employee class', (
     it("returns the Engineer's Github Link", () => {
         const engineer = new Engineer("Bob", 5, "test@email.com", "https://github.com/Meshtatsuo");
 
-        expect(engineer.getGithubLink()).toEqual(expect.any(String));
-        expect(engineer.getGithubLink()).toBe("https://github.com/Meshtatsuo");
+        expect(engineer.getGithub()).toEqual(expect.any(String));
+        expect(engineer.getGithub()).toBe("https://github.com/Meshtatsuo");
+    })
+
+    it("returns the Engineer's role", () => {
+        const engineer = new Engineer("Bob", 5, "test@email.com", "https://github.com/Meshtatsuo");
+
+        expect(engineer.getRole()).toEqual("Engineer");
     })
 })
