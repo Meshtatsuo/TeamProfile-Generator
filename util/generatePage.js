@@ -64,7 +64,7 @@ function generatePage(managers, engineers, interns) {
 }
 
 function writeToFile(content) {
-  fs.writeFile('./output/index.html', content, err => {
+  fs.writeFile('./dist/profile.html', content, err => {
     if (err) {
       console.error(err)
       return;

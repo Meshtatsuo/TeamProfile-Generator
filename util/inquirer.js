@@ -100,7 +100,6 @@ function promptUser() {
                 employeeData.officeNumber
               );
               managers.push(newManager);
-              console.log(managers);
               promptAddAnother();
             });
           break;
@@ -131,7 +130,6 @@ function promptUser() {
                 employeeData.githubLink
               );
               engineers.push(newEngineer);
-              console.log(engineers);
               promptAddAnother();
             });
           break;
@@ -162,8 +160,6 @@ function promptUser() {
                 employeeData.schoolName
               );
               interns.push(newIntern);
-
-              console.log(interns);
               promptAddAnother();
             });
           break;
