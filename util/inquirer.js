@@ -14,6 +14,7 @@ const interns = [];
 // main prompt function. Begins the process
 // of adding employee info
 function promptUser() {
+  console.log("Begin");
   inquirer
     .prompt([{
         type: "list",

@@ -1,3 +1,5 @@
+const inquirer = require("./util/inquirer");
+
 const welcomeMessage = `
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     WELCOME TO THE TEAM PROFILE GENERATOR
