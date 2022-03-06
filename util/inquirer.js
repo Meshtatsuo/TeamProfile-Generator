@@ -1,13 +1,18 @@
+// including third library modules
 const inquirer = require("inquirer");
+// including classes 
 const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
+// including generate page module
 const generator = require("./generatePage");
-
+// arrays for each employee type
 const managers = [];
 const engineers = [];
 const interns = [];
 
+// main prompt function. Begins the process
+// of adding employee info
 function promptUser() {
   inquirer
     .prompt([{
@@ -20,6 +25,14 @@ function promptUser() {
         type: "number",
         name: "employeeId",
         message: "Enter the Employee ID:",
+        validate: (id) => {
+          if (!isNaN(id)) {
+            return true;
+          } else {
+            console.log("Please enter a number!");
+            return false;
+          }
+        },
       },
       {
         type: "input",
@@ -60,6 +73,8 @@ function promptUser() {
       let employeeData = answers;
       //Prompt for engineer specific info, create new engineer, and add it to employee array
       switch (employeeData.employeeType) {
+        //if manager, get office number, create new manager object
+        //and add it to the managers array
         case "Manager":
           inquirer
             .prompt({
@@ -88,6 +103,8 @@ function promptUser() {
               promptAddAnother();
             });
           break;
+          // if engineer, get github profile, create new engineer object
+          // and add it to the engineers array
         case "Engineer":
           inquirer
             .prompt({
@@ -117,6 +134,8 @@ function promptUser() {
               promptAddAnother();
             });
           break;
+          // if intern, get intern's school name, create new intern object
+          // and add it to the intern arrays
         case "Intern":
           inquirer
             .prompt({
@@ -150,7 +169,7 @@ function promptUser() {
       }
     });
 };
-
+// prompts user if they wish to add another employee
 const promptAddAnother = () => {
   inquirer
     .prompt([{
@@ -161,8 +180,10 @@ const promptAddAnother = () => {
     }, ])
     .then((answers) => {
       if (answers.addNewEmployee) {
+        // if yes, start prompts again
         promptUser();
       } else {
+        // if no, generate page content and write it to index.html file
         let content = generator.generatePage(managers, engineers, interns);
 
         generator.writeToFile(content);

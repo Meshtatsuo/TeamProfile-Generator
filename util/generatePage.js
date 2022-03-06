@@ -2,23 +2,23 @@ const fs = require("fs");
 
 
 function generatePage(managers, engineers, interns) {
-    let managerCards = ``;
-    let engineerCards = ``;
-    let internCards = ``;
-
-    managers.forEach(i => {
-        managerCards += i.html;
-    })
-
-    engineers.forEach(i => {
-        engineerCards += i.html;
-    })
-
-    interns.forEach(i => {
-        internCards += i.html;
-    })
-
-    return `
+  let managerCards = ``;
+  let engineerCards = ``;
+  let internCards = ``;
+  // iterate through each array
+  managers.forEach(i => {
+    managerCards += i.html;
+  })
+  // iterate through each array 
+  engineers.forEach(i => {
+    engineerCards += i.html;
+  })
+  // iterate through each array 
+  interns.forEach(i => {
+    internCards += i.html;
+  })
+  // string literal for writing to file
+  return `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,12 +64,12 @@ function generatePage(managers, engineers, interns) {
 }
 
 function writeToFile(content) {
-    fs.writeFile('./output/index.html', content, err => {
-        if (err) {
-            console.error(err)
-            return;
-        }
-    })
+  fs.writeFile('./output/index.html', content, err => {
+    if (err) {
+      console.error(err)
+      return;
+    }
+  })
 }
 
 exports.generatePage = generatePage;
